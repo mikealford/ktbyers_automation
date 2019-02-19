@@ -1,0 +1,16 @@
+interface FastEthernet4
+ description *** LAN connection (don't change) ***
+ ip address {{ ip_addr }} {{ netmask }}
+ duplex auto
+ speed auto
+!
+{%- if vlan1 is defined %}
+interface Vlan1
+ description *** Test description ***
+ ip address {{ vlan1_ip_addr }} {{ vlan1_netmask }}
+ {%- if vlan1_ipv6_addr is defined %}
+ ipv6 address {{ vlan1_ipv6_addr }}{{ vlan1_ipv6_netmask }}
+ {%- endif %}
+ duplex auto
+ speed auto
+{%- endif %}
